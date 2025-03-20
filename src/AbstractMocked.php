@@ -7,7 +7,7 @@ namespace QratorLabs\SmockyPHPUnit;
 use PHPUnit\Framework\MockObject\Generator\Generator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use QratorLabs\Smocky\EmptyClass;
+use QratorLabs\SmockyPHPUnit\Helper\EmptyClass;
 use ReflectionException;
 
 abstract class AbstractMocked
