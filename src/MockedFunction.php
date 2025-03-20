@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace QratorLabs\SmockyPHPUnit;
 
-use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
+use PHPUnit\Framework\MockObject\InvocationStubber;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use PHPUnit\Framework\TestCase;
 use QratorLabs\Smocky\Functions\MockedFunction as GenericMockedFunction;
@@ -12,19 +12,10 @@ use ReflectionException;
 
 class MockedFunction extends AbstractMocked
 {
-    /** @var GenericMockedFunction */
-    private $mockedFunction;
-
-    /** @var InvocationMocker */
-    private $invocationMocker;
+    private InvocationStubber $invocationMocker;
+    private GenericMockedFunction $mockedFunction;
 
     /**
-     * MockedMethod constructor.
-     *
-     * @param TestCase             $testCase
-     * @param string               $function
-     * @param InvocationOrder|null $invocationRule
-     *
      * @throws ReflectionException
      */
     public function __construct(
@@ -51,13 +42,9 @@ class MockedFunction extends AbstractMocked
         $method     = $this->mockedFunction->getShortName();
         $mockObject = self::createEmptyMock($testCase, $method);
 
-        if ($invocationRule === null) {
-            /** @var InvocationMocker $mocker */
-            $mocker = $mockObject->method($method);
-        } else {
-            $mocker = $mockObject->expects($invocationRule)->method($method);
-        }
-        $this->invocationMocker = $mocker;
+        $this->invocationMocker = $invocationRule === null
+            ? $mockObject->method($method)
+            : $mockObject->expects($invocationRule)->method($method);
     }
 
     /**
@@ -65,12 +52,12 @@ class MockedFunction extends AbstractMocked
      *
      * @return mixed
      */
-    public function callOriginal(...$args)
+    public function callOriginal(...$args): mixed
     {
         return $this->mockedFunction->callOriginal(...$args);
     }
 
-    public function getMocker(): InvocationMocker
+    public function getMocker(): InvocationStubber
     {
         return $this->invocationMocker;
     }

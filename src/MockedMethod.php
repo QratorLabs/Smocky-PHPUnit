@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace QratorLabs\SmockyPHPUnit;
 
-use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
+use PHPUnit\Framework\MockObject\InvocationStubber;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use PHPUnit\Framework\TestCase;
@@ -13,20 +13,16 @@ use ReflectionException;
 
 class MockedMethod extends AbstractMocked
 {
-    /** @var MockedClassMethod */
-    private $mockedMethod;
-    /** @var InvocationMocker */
-    private $invocationMocker;
-
-    /** @var MockObject */
-    private $mockObject;
+    private InvocationStubber $invocationMocker;
+    private MockObject $mockObject;
+    private MockedClassMethod $mockedMethod;
 
     /**
      * MockedMethod constructor.
      *
-     * @param TestCase             $testCase
-     * @param string               $class
-     * @param string               $method
+     * @param TestCase $testCase
+     * @param string $class
+     * @param string $method
      * @param InvocationOrder|null $invocationRule
      *
      * @throws ReflectionException
@@ -40,14 +36,6 @@ class MockedMethod extends AbstractMocked
         ?InvocationOrder $invocationRule = null
     ) {
         $this->mockObject = self::createEmptyMock($testCase, $method);
-
-        if ($invocationRule === null) {
-            /** @var InvocationMocker $mocker */
-            $mocker = $this->mockObject->method($method);
-        } else {
-            $mocker = $this->mockObject->expects($invocationRule)->method($method);
-        }
-        $this->invocationMocker = $mocker;
 
         $mockObject         = $this->mockObject;
         $this->mockedMethod = new MockedClassMethod(
@@ -63,32 +51,29 @@ class MockedMethod extends AbstractMocked
                 return $mockObject->{$method}(...$args);
             }
         );
+
+        $this->invocationMocker = $invocationRule === null
+            ? $this->mockObject->method($method)
+            : $this->mockObject->expects($invocationRule)->method($method);
     }
 
     /**
-     * @param object $object
-     * @param mixed  ...$args
-     *
-     * @return mixed
      * @throws ReflectionException
      */
-    public function callOriginal($object, ...$args)
+    public function callOriginal(object $object, mixed ...$args): mixed
     {
         return $this->mockedMethod->callOriginal($object, ...$args);
     }
 
     /**
-     * @param mixed ...$args
-     *
-     * @return mixed
      * @throws ReflectionException
      */
-    public function callOriginalStatic(...$args)
+    public function callOriginalStatic(mixed ...$args): mixed
     {
         return $this->mockedMethod->callOriginalStatic(...$args);
     }
 
-    public function getMocker(): InvocationMocker
+    public function getMocker(): InvocationStubber
     {
         return $this->invocationMocker;
     }

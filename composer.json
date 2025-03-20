@@ -4,8 +4,9 @@
   "type": "library",
   "homepage": "https://github.com/QratorLabs/Smocky-PHPUnit",
   "require": {
+    "php": "^8.0",
     "qratorlabs/smocky": "^1.2",
-    "phpunit/phpunit": "^9.6 || ^10.0 || ^11.0 || >=12.0 <= 12.0.8"
+    "phpunit/phpunit": "^12.0.9"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.12",
