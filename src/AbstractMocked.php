@@ -8,7 +8,7 @@ use PHPUnit\Framework\MockObject\Generator as Generator_PHPUnit9;
 use PHPUnit\Framework\MockObject\Generator\Generator as Generator_PHPUnit1x;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use QratorLabs\Smocky\EmptyClass;
+use QratorLabs\SmockyPHPUnit\Helper\EmptyClass;
 use ReflectionException;
 use ReflectionMethod;
 

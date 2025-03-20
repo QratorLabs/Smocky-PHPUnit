@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace QratorLabs\SmockyPHPUnit\Test;
 
 use PHPUnit\Framework\TestCase;
-use QratorLabs\Smocky\Phpunit\MockedMethod;
+use QratorLabs\SmockyPHPUnit\MockedMethod;
 use QratorLabs\SmockyPHPUnit\Test\fixtures\ClassWithMethods;
 use ReflectionException;
 
