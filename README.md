@@ -13,8 +13,8 @@ composer require --dev "qratorlabs/smocky-phpunit:^1.0||^2.0"
 
 This library follows [SemVer](https://semver.org/).
 But major versions are used to indicate compatibility with PHPUnit versions:
-- `1.x` is compatible with PHPUnit 9.6...12.0.7
-- `2.x` is compatible with PHPUnit 12.0.8...
+- `1.x` is compatible with PHPUnit 9.6...12.0.8
+- `2.x` is compatible with PHPUnit 12.0.9...
 
 ## Usage
 To use with PHPUnit:
