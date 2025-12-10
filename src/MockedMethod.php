@@ -22,7 +22,7 @@ class MockedMethod extends AbstractMocked
      *
      * @param TestCase $testCase
      * @param string $class
-     * @param string $method
+     * @param non-empty-string $method
      * @param InvocationOrder|null $invocationRule
      *
      * @throws ReflectionException

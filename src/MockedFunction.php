@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 use QratorLabs\Smocky\Functions\MockedFunction as GenericMockedFunction;
 use ReflectionException;
 
+use function assert;
+
 class MockedFunction extends AbstractMocked
 {
     private InvocationStubber $invocationMocker;
@@ -40,6 +42,7 @@ class MockedFunction extends AbstractMocked
         );
 
         $method     = $this->mockedFunction->getShortName();
+        assert(!empty($method));
         $mockObject = self::createEmptyMock($testCase, $method);
 
         $this->invocationMocker = $invocationRule === null
