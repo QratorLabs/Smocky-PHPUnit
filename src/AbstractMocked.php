@@ -10,6 +10,8 @@ use PHPUnit\Framework\TestCase;
 use QratorLabs\SmockyPHPUnit\Helper\EmptyClass;
 use ReflectionException;
 
+use function get_class;
+
 abstract class AbstractMocked
 {
     /**
@@ -37,7 +39,7 @@ abstract class AbstractMocked
             throw new ReflectionException('Failed to create a mock object');
         }
 
-        $testCase->registerMockObject($mockObject);
+        $testCase->registerMockObject($mockObject::class, $mockObject);
 
         return $mockObject;
     }
