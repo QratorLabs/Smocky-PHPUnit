@@ -7,3 +7,4 @@
 /phpunit.xml.dist       export-ignore
 /test                   export-ignore
 /README.md              export-ignore
+/rector.php             export-ignore
