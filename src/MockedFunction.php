@@ -50,12 +50,7 @@ class MockedFunction extends AbstractMocked
             : $mockObject->expects($invocationRule)->method($method);
     }
 
-    /**
-     * @param mixed ...$args
-     *
-     * @return mixed
-     */
-    public function callOriginal(...$args): mixed
+    public function callOriginal(mixed ...$args): mixed
     {
         return $this->mockedFunction->callOriginal(...$args);
     }

@@ -14,7 +14,7 @@ use function uniqid;
 /**
  * @internal
  */
-class MockedMethodTest extends RunkitDependantTestCase
+final class MockedMethodTest extends RunkitDependantTestCase
 {
     /**
      * @throws ReflectionException
@@ -177,7 +177,7 @@ class MockedMethodTest extends RunkitDependantTestCase
 
         self::assertSame('initial', $object->getValue());
         $mock = new MockedMethod($this, get_class($object), 'getValue', $this->once());
-        $mock->getMocker()->willReturnCallback(static function () use ($object) {
+        $mock->getMocker()->willReturnCallback(static function () use ($object): string {
             $object->value = 'changed';
 
             return 'mocked';

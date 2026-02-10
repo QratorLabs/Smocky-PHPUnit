@@ -10,7 +10,8 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.12",
-    "phpstan/phpstan": "^2.1"
+    "phpstan/phpstan": "^2.1",
+    "rector/rector": "^2.3"
   },
   "license": "MIT",
   "autoload": {
@@ -37,6 +38,8 @@
     "phpstan:baseline": "@phpstan --generate-baseline --allow-empty-baseline -vv",
     "phpunit": "phpunit",
     "phpcs": "phpcs",
-    "phpcbf": "phpcbf"
+    "phpcbf": "phpcbf",
+    "rector:test": "@rector:fix --dry-run",
+    "rector:fix": "rector process"
   }
 }

@@ -9,10 +9,9 @@ use ReflectionException;
 
 use function QratorLabs\SmockyPHPUnit\Test\fixtures\someFunction;
 
-class MockedFunctionTest extends RunkitDependantTestCase
+final class MockedFunctionTest extends RunkitDependantTestCase
 {
     /**
-     * @return void
      * @throws ReflectionException
      */
     public function testCallOriginal(): void
@@ -26,7 +25,7 @@ class MockedFunctionTest extends RunkitDependantTestCase
         // This was a bit tricky: we have to use `&$mock` to maintain variable-ref but not just object-ref
         // to do proper object destruction
         $mock->getMocker()->willReturnCallback(
-            static function () use (&$mock, &$extValue) {
+            static function () use (&$mock, &$extValue): string {
                 $extValue = $mock->callOriginal();
 
                 return 'someFunction';
@@ -34,19 +33,19 @@ class MockedFunctionTest extends RunkitDependantTestCase
         );
 
         // is there any change?
-        self::assertNotEquals($originalValue, $function());
+        self::assertNotSame($originalValue, $function());
 
         // call from outside
-        self::assertEquals($originalValue, $mock->callOriginal());
+        self::assertSame($originalValue, $mock->callOriginal());
 
         // call from closure
-        self::assertEquals($originalValue, $extValue);
+        self::assertSame($originalValue, $extValue);
 
         // assigment is used instead of `unset` because closure have link (ref) to mock-object
         // unsetting of local variable will not destruct object, but assigning variable to `null`
         // will do the job
         $mock = null;
-        self::assertEquals($originalValue, $function());
+        self::assertSame($originalValue, $function());
     }
 
     /**

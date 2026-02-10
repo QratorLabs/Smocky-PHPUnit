@@ -19,8 +19,7 @@ class ClassWithMethods
     }
 
     /**
-     * @return Generator
-     * @phpstan-return Generator<string, array{class-string, string}>
+     * @return Generator<string, array{class-string, string}>
      * @throws ReflectionException
      */
     public static function getDataForTests(): Generator

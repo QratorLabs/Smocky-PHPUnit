@@ -23,6 +23,9 @@ jobs:
       - name: Run phpstan
         run: composer run-script phpstan
 
+      - name: Run rector:test
+        run: composer run-script rector:test
+
       - name: Run phpcs
         run: composer run-script phpcs
 

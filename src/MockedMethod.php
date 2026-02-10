@@ -20,14 +20,10 @@ class MockedMethod extends AbstractMocked
     /**
      * MockedMethod constructor.
      *
-     * @param TestCase $testCase
-     * @param string $class
+     * @param class-string $class
      * @param non-empty-string $method
-     * @param InvocationOrder|null $invocationRule
      *
      * @throws ReflectionException
-     *
-     * @phpstan-param class-string $class
      */
     public function __construct(
         TestCase $testCase,
