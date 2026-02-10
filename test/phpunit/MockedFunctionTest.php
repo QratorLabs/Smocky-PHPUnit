@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace QratorLabs\SmockyPHPUnit\Test;
 
-use PHPUnit\Framework\TestCase;
 use QratorLabs\SmockyPHPUnit\MockedFunction;
 use ReflectionException;
 
 use function QratorLabs\SmockyPHPUnit\Test\fixtures\someFunction;
 
-class MockedFunctionTest extends TestCase
+class MockedFunctionTest extends RunkitDependantTestCase
 {
     /**
      * @return void
