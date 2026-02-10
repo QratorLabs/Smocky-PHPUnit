@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace QratorLabs\SmockyPHPUnit\Test;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use QratorLabs\SmockyPHPUnit\MockedMethod;
 use QratorLabs\SmockyPHPUnit\Test\fixtures\ClassWithMethods;
 use ReflectionException;
@@ -14,6 +15,7 @@ use function uniqid;
 /**
  * @internal
  */
+#[AllowMockObjectsWithoutExpectations]
 final class MockedMethodTest extends RunkitDependantTestCase
 {
     /**

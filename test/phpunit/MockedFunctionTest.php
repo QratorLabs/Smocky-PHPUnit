@@ -4,11 +4,16 @@ declare(strict_types=1);
 
 namespace QratorLabs\SmockyPHPUnit\Test;
 
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use QratorLabs\SmockyPHPUnit\MockedFunction;
 use ReflectionException;
 
 use function QratorLabs\SmockyPHPUnit\Test\fixtures\someFunction;
 
+/**
+ * @internal
+ */
+#[AllowMockObjectsWithoutExpectations]
 final class MockedFunctionTest extends RunkitDependantTestCase
 {
     /**
