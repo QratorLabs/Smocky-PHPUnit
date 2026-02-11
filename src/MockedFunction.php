@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace QratorLabs\SmockyPHPUnit;
 
-use PHPUnit\Framework\MockObject\InvocationStubber;
+use PHPUnit\Framework\MockObject\InvocationMocker;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use PHPUnit\Framework\TestCase;
 use QratorLabs\Smocky\Functions\MockedFunction as GenericMockedFunction;
@@ -14,7 +14,7 @@ use function assert;
 
 class MockedFunction extends AbstractMocked
 {
-    private InvocationStubber $invocationMocker;
+    private InvocationMocker $invocationMocker;
     private GenericMockedFunction $mockedFunction;
 
     /**
@@ -55,7 +55,7 @@ class MockedFunction extends AbstractMocked
         return $this->mockedFunction->callOriginal(...$args);
     }
 
-    public function getMocker(): InvocationStubber
+    public function getMocker(): InvocationMocker
     {
         return $this->invocationMocker;
     }
