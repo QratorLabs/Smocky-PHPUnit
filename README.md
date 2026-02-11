@@ -16,6 +16,7 @@ But major versions are used to indicate compatibility with PHPUnit versions:
 - `1.x` is compatible with PHPUnit 9.6...12.0.8
 - `2.0` is compatible with PHPUnit 12.0.9...12.4.x
 - `2.1` is compatible with PHPUnit 12.5.0...
+- `2.2` is compatible with PHPUnit 13.0.0...
 
 ## Usage
 To use with PHPUnit:
