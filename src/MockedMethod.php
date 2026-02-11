@@ -6,6 +6,7 @@ namespace QratorLabs\SmockyPHPUnit;
 
 use PHPUnit\Framework\MockObject\InvocationMocker;
 use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use PHPUnit\Framework\TestCase;
 use QratorLabs\Smocky\ClassMethod\MockedClassMethod;
@@ -48,9 +49,7 @@ class MockedMethod extends AbstractMocked
             }
         );
 
-        $this->invocationMocker = $invocationRule === null
-            ? $this->mockObject->method($method)
-            : $this->mockObject->expects($invocationRule)->method($method);
+        $this->invocationMocker = $this->mockObject->expects($invocationRule ?? new AnyInvokedCount())->method($method);
     }
 
     /**

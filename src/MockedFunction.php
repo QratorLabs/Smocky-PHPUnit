@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace QratorLabs\SmockyPHPUnit;
 
 use PHPUnit\Framework\MockObject\InvocationMocker;
+use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
 use PHPUnit\Framework\TestCase;
 use QratorLabs\Smocky\Functions\MockedFunction as GenericMockedFunction;
@@ -45,9 +46,7 @@ class MockedFunction extends AbstractMocked
         assert(!empty($method));
         $mockObject = self::createEmptyMock($testCase, $method);
 
-        $this->invocationMocker = $invocationRule === null
-            ? $mockObject->method($method)
-            : $mockObject->expects($invocationRule)->method($method);
+        $this->invocationMocker = $mockObject->expects($invocationRule ?? new AnyInvokedCount())->method($method);
     }
 
     public function callOriginal(mixed ...$args): mixed
