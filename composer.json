@@ -6,7 +6,7 @@
   "require": {
     "php": "^8.0",
     "qratorlabs/smocky": "^1.2",
-    "phpunit/phpunit": "^12.5.0"
+    "phpunit/phpunit": "^13.0.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.12",
